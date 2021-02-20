@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<!-- عبدالله عدنان تقي الدين , 201911449 -->
+<html>
+    <head>
+        <link href="https://unpkg.com/nes.css/css/nes.css" rel="stylesheet" />
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+
+         <link rel="styleSheet" href="IndexStyle.css">
+    </head>
+    <body>         
+        <script>
+            
+            function play() 
+            {
+                var audioS = document.getElementById("audio2");
+                audioS.play();
+            }
+
+            function CalcBMI(){
+                var audio = new Audio("Voice 001.m4a")
+                play();
+                document.getElementById("term").innerHTML = "";
+                document.getElementById("error_weight").innerHTML = "";
+                document.getElementById("error_height").innerHTML = "";
+                var UserWeight = document.getElementById("Weight").value;
+                var UserHeight = document.getElementById("Height").value;
+                //var BMIndex = (UserWeight / (UserHeight/100) * (UserHeight/100));
+               // var BMIndex = (UserWeight / UserHeight / UserHeight) * 10000
+                var BMIndex = UserWeight/(Math.pow(UserHeight/100 , 2));
+                 if ((isNaN(UserHeight) || UserHeight <= 0 || UserHeight > 220 ) && (isNaN(UserWeight) || UserWeight <= 0 || UserWeight < 20 ))
+                {
+                    document.getElementById("error_weight").innerHTML = "ENTER A VALID NUMBER !"
+                    document.getElementById("error_height").innerHTML = "ENTER A VALID NUMBER !"
+
+                }
+                
+                
+                
+                else if(isNaN(UserHeight) || UserHeight <= 0 || UserHeight > 220 ){
+                    document.getElementById("error_height").innerHTML = "ENTER A VALID NUMBER !"
+
+                }
+                else if(isNaN(UserWeight) || UserWeight <= 0 || UserWeight < 20 ){
+                     document.getElementById("error_weight").innerHTML = "ENTER A VALID NUMBER !"
+                }
+               
+                else if(BMIndex > 0 && BMIndex <= 18.5 ){
+                    document.getElementById("Result").innerHTML = "You Are UnderWeight :( " + "<img src='Skinny.png' width='80' height='80'/>"
+                    }
+                    else if(BMIndex > 18.5 &&  BMIndex < 25){
+                    document.getElementById("Result").innerHTML = "You Are in optimal shape !" + "<img src='images.jfif' width='80' height='80'/>"
+                    }
+                    else{ 
+                            document.getElementById("Result").innerHTML = "CONGRATULATIONS,You Are A CERTIFIED <i style= 'color : blue'> CHUNGUS </i>! " + "<img src='1a522996b7e65d2.png' width='100' height='100'/>"
+                            document.getElementById("term").innerHTML = "* chungus (pronunced chun•gus) is a slang for overweight "
+                            setTimeout(function(){
+                                    audio.play();
+                            } , 1000)
+                    }
+                console.log(BMIndex);
+              }
+             
+        </script>
+        <div id="FormSty">
+            <section class="nes-container" style="background-color: #73fffc61" id="container" >
+                <section class="message-list">
+                  <section class="message -left" style="color: rgb(138, 207, 230);">
+                    <!-- Balloon -->
+                    <div class="nes-balloon from-right">
+                      <p>HELLO FRIEND !, WELCOME TO MY HUMBLE BMI CALCULATOR! PLEASE ENTER VALUES IN KG AND CM.</p>
+                    </div>
+                  </section>
+            </section>
+            <form id="F1" >
+                <h1 class="text">ENTER YOUR WEIGHT</h1>
+                <input type="text" id="Weight" class="INtext" class="nes-input" placeholder="Enter a weight over 20" style="font-size:70%; padding: 10px 30px ; width: 100%"/>
+                <span id="error_weight"></span>
+                
+                <h1 class="text">ENTER YOUR HEIGHT</h1>
+                <input type="text" id="Height" class="INtext" class="nes-input" placeholder="Enter a height under 220" style="font-size:70%; padding: 10px 30px ; width: 100%"/>
+                <span id="error_height"></span>
+                <br>
+                 <input type="button" value="CALCULATE!" onclick="CalcBMI()"  id="btn" class="nes-btn is-primary">
+            </form>
+        
+        <h1 id="Result" ></h1>
+        <h1 id="term" style="font-size: xx-small;" ></h1>
+        <audio id="audio2" src="Click.m4a"></audio>
+        </div>
+
+    </body>
+</html>
